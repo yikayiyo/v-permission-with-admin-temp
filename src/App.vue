@@ -8,7 +8,7 @@
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button type="primary">大家都有</el-button>
-          <el-button type="success" v-if="checkPermission(scope.row.ops)">Admin Button {{ scope.row.ops }}</el-button>
+          <el-button type="success" v-permission="scope.row.ops">Admin Button {{ scope.row.ops }}</el-button>
         </template>
       </el-table-column>
     </el-table>
