@@ -6,10 +6,10 @@
       <el-table-column prop="name" label="姓名" width="180"> </el-table-column>
       <el-table-column prop="address" label="地址"></el-table-column>
       <el-table-column label="操作">
-        <div :key="scope.row.address" slot-scope="scope">
+        <template slot-scope="scope">
           <el-button type="primary">大家都有</el-button>
-          <el-button type="success" v-permission="scope.row.ops">Admin Button {{ scope.row.ops }}</el-button>
-        </div>
+          <el-button type="success" v-if="checkPermission(scope.row.ops)">Admin Button {{ scope.row.ops }}</el-button>
+        </template>
       </el-table-column>
     </el-table>
     <el-pagination
@@ -60,6 +60,24 @@ export default {
     handelPageChange(val) {
       this.pageNum = val
       this.list = [this.tableData[val - 1]]
+    },
+    checkPermission(value) {
+      if (value && value instanceof Array && value.length > 0) {
+        const roles = ['admin']
+        const permissionRoles = value
+
+        const hasPermission = roles.some((role) => {
+          return permissionRoles.includes(role)
+        })
+
+        if (!hasPermission) {
+          return false
+        }
+        return true
+      } else {
+        console.error(`need roles! Like v-permission="['admin','editor']"`)
+        return false
+      }
     },
   },
   data() {
