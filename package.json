@@ -1,0 +1,17 @@
+{
+  "name": "vue2-starter",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "^4.5.13",
+    "vue-template-compiler": "2.5.17"
+  },
+  "dependencies": {
+    "element-ui": "^2.9.1",
+    "vue": "2.5.17",
+    "vue-loader": "15.3.0"
+  }
+}
